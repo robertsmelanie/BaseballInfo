@@ -74,25 +74,25 @@ async function rankPlayers() {
 }
 
 // Combine and rank
-function rankPlayers() {
-    const selectedPosition = document.getElementById("position-select").value;
-    const results = document.getElementById("results");
-    results.innerHTML = "";
+// function rankPlayers() {
+//     const selectedPosition = document.getElementById("position-select").value;
+//     const results = document.getElementById("results");
+//     results.innerHTML = "";
 
-    const filtered = mockPlayers.filter(p => p.position === selectedPosition);
-    const ranked = filtered.map(player => {
-        const runs = runsValue(player.stats);
-        const antiRuns = antiRunsFielder(player.stats, player.position);
-        const total = runs + antiRuns;
+//     const filtered = mockPlayers.filter(p => p.position === selectedPosition);
+//     const ranked = filtered.map(player => {
+//         const runs = runsValue(player.stats);
+//         const antiRuns = antiRunsFielder(player.stats, player.position);
+//         const total = runs + antiRuns;
 
-        return { name: player.name, runs, antiRuns, total };
-    }).sort((a, b) => b.total - a.total);
+//         return { name: player.name, runs, antiRuns, total };
+//     }).sort((a, b) => b.total - a.total);
 
-    ranked.forEach((p, i) => {
-        const div = document.createElement("div");
-        div.className = "player";
-        div.innerHTML = `<strong>#${i + 1} ${p.name}</strong><br>
-      Runs: ${p.runs.toFixed(2)} | Anti-Runs: ${p.antiRuns.toFixed(2)} | Total: ${p.total.toFixed(2)}`;
-        results.appendChild(div);
-    });
-}
+//     ranked.forEach((p, i) => {
+//         const div = document.createElement("div");
+//         div.className = "player";
+//         div.innerHTML = `<strong>#${i + 1} ${p.name}</strong><br>
+//       Runs: ${p.runs.toFixed(2)} | Anti-Runs: ${p.antiRuns.toFixed(2)} | Total: ${p.total.toFixed(2)}`;
+//         results.appendChild(div);
+//     });
+// }

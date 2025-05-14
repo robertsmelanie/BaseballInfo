@@ -1,4 +1,4 @@
-function calculateAntiRunsFielder(stats, position) {
+function antiRunsFielder(stats, position) {
     const errors = stats.errors || 0;
     const assists = stats.assists || 0;
     const putOuts = stats.putOuts || 0;

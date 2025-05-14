@@ -1,4 +1,4 @@
-function calculateAntiRunsPitcher(stats) {
+function antiRunsPitcher(stats) {
     const IP = stats.inningsPitched || 0;
     const ERA = stats.era || 5.00;  // Default high ERA
     const WHIP = stats.whip || 1.5;

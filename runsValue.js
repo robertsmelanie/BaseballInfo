@@ -1,4 +1,4 @@
-function calculateRunsValue(stats) {
+function runsValue(stats) {
     const RBI = stats.rbi || 0;
     const OBP = stats.obp || 0;
     const SB = stats.stolenBases || 0;

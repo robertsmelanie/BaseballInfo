@@ -8,7 +8,25 @@
 </head>
 <body>
     <h1>Baseball Information</h1>
+    <div class="app">
+        <h1>Player Value Ranker</h1>
+        <label for="position-select">Select Position:</label>
+        <select id="position-select">
+            <option value="SS">Shortstop (SS)</option>
+            <option value="2B">Second Base (2B)</option>
+            <option value="CF">Center Field (CF)</option>
+            <option value="C">Catcher (C)</option>
+            <option value="1B">First Base (1B)</option>
+            <option value="3B">Third Base (3B)</option>
+            <option value="LF">Left Field (LF)</option>
+            <option value="RF">Right Field (RF)</option>
+            <option value="DH">Designated Hitter (DH)</option>
+            <option value="P">Pitcher (P)</option>
+        </select>
+        <button onclick="rankPlayers()">Rank Players</button>
     
+        <div id="results"></div>
+    </div>
 
 
 

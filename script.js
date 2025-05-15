@@ -18,7 +18,7 @@
 //     }
 // ];
 
-async function fetchTeamRoster(teamId = 147) {
+async function fetchTeamRoster(teamId) {
     const res = await fetch(`https://statsapi.mlb.com/api/v1/teams/${teamId}/roster`);
     const data = await res.json();
     return data.roster.map(player => ({

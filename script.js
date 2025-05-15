@@ -44,8 +44,8 @@ async function rankPlayers() {
     const selectedPosition = document.getElementById("position-select").value;
     const results = document.getElementById("results");
     results.innerHTML = "Loading...";
-
-    const teamRoster = await fetchTeamRoster(147); // Yankees
+    const teamId = document.getElementById("teamId").value;
+    const teamRoster = await fetchTeamRoster(teamId);
 
     const players = teamRoster.filter(p => p.position === selectedPosition);
 

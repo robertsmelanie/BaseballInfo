@@ -17,6 +17,17 @@
 //         }
 //     }
 // ];
+document.addEventListener('DOMContentLoaded', function () {
+    const yearSelect = document.getElementById("year-select");
+    const currentYear = new Date().getFullYear();
+
+    const currentYearOption = document.createElement("option");
+    currentYearOption.value = currentYear;
+    currentYearOption.textContent = currentYear;
+    yearSelect.insertBefore(currentYearOption, yearSelect.firstChild);
+
+    yearSelect.value = currentYear; // Optional: Set current year as default
+});
 
 async function fetchTeamRoster(teamId) {
     const res = await fetch(`https://statsapi.mlb.com/api/v1/teams/${teamId}/roster`);

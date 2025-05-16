@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     yearSelect.value = currentYear; // Optional: Set current year as default
 });
+console.log(Date.now());
+console.log(new Date().getFullYear());
+console.log(new Date().toLocaleDateString());
+
 
 async function fetchTeamRoster(teamId) {
     const res = await fetch(`https://statsapi.mlb.com/api/v1/teams/${teamId}/roster`);
@@ -16,9 +20,19 @@ async function fetchTeamRoster(teamId) {
     return data.roster.map(player => ({
         id: player.person.id,
         name: player.person.fullName,
-        position: player.position.abbreviation
+        position: player.position.abbreviation,
+        stats: player.stats,
+        // Add any other properties you need
+        // console.log(player.person.id),
+        // console.log(player.person.fullName),
+        // console.log(player.position.abbreviation)
     }));
+    console.log(player.person.id),
+    console.log(player.person.fullName),
+    console.log(player.position.abbreviation)
 }
+
+
 async function fetchPlayerStats(playerId, year) {
     const url = `https://statsapi.mlb.com/api/v1/people/${playerId}?hydrate=stats(group=[hitting,fielding],type=season,season=${year})`;
     const res = await fetch(url);
@@ -30,8 +44,15 @@ async function fetchPlayerStats(playerId, year) {
     const fieldingStats = stats.find(s => s.group.displayName === "fielding")?.splits[0]?.stat || {};
 
     return { hittingStats, fieldingStats };
+    console.log(playerId);
+    console.log(year);
+    console.log(hittingStats);
+    console.log(fieldingStats);
+    console.log(stats);
+
 }
 
+// console.log(playerId);
 async function rankPlayers() {
     const selectedPosition = document.getElementById("position-select").value;
     const selectedYear = document.getElementById("year-select").value; // Get the selected year
@@ -43,6 +64,7 @@ async function rankPlayers() {
     const players = teamRoster.filter(p => p.position === selectedPosition);
 
     const ranked = [];
+  
 
     for (const player of players) {
         const { hittingStats, fieldingStats } = await fetchPlayerStats(player.id, selectedYear);
@@ -52,6 +74,19 @@ async function rankPlayers() {
         const total = runs + antiRuns;
 
         ranked.push({ name: player.name, runs, antiRuns, total });
+
+        console.log(player.name);
+        console.log(runs);
+        console.log(antiRuns);
+        console.log(total);
+        console.log(player.position);
+        console.log(player.id);
+        console.log(player.stats);
+        console.log(player);
+        console.log(player.hittingStats);
+        console.log(player.fieldingStats);
+        console.log(player.stats);
+        console.log(player.stats);
     }
 
     ranked.sort((a, b) => b.total - a.total);
@@ -65,4 +100,21 @@ async function rankPlayers() {
         results.appendChild(div);
     });
 }
+console.log("Hello World");
+// const playerId = 123456; // Replace with the actual player ID
 
+
+// console.log(player)
+// const playerId = player.person.id;
+// const playerName = player.person.fullName;
+// const playerPosition = player.position.abbreviation;
+// console.log(player.person.id);
+// console.log(playerId);
+const year = new Date().getFullYear();
+// const runs = runsValue(hittingStats);
+// const antiRuns = antiRunsFielder(fieldingStats, player.position);
+// const total = runs + antiRuns;
+console.log(year);
+// console.log(runs);
+// console.log(antiRuns);
+// console.log(total);

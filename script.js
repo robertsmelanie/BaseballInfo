@@ -28,7 +28,7 @@ async function fetchTeamRoster(teamId) {
     }));
 }
 async function fetchPlayerStats(playerId) {
-    const url = `https://statsapi.mlb.com/api/v1/people/${playerId}?hydrate=stats(group=[hitting,fielding],type=season)`;
+    const url = `https://statsapi.mlb.com/api/v1/people/${playerId}?hydrate=stats(group=[hitting,fielding],type=season,season=${year})`;
     const res = await fetch(url);
     const data = await res.json();
 
@@ -42,6 +42,7 @@ async function fetchPlayerStats(playerId) {
 
 async function rankPlayers() {
     const selectedPosition = document.getElementById("position-select").value;
+    const selectedYear = document.getElementById("year-select").value; // Get the selected year
     const results = document.getElementById("results");
     results.innerHTML = "Loading...";
     const teamId = document.getElementById("teamId").value;
@@ -52,7 +53,7 @@ async function rankPlayers() {
     const ranked = [];
 
     for (const player of players) {
-        const { hittingStats, fieldingStats } = await fetchPlayerStats(player.id);
+        const { hittingStats, fieldingStats } = await fetchPlayerStats(player.id, selectedYear);
 
         const runs = runsValue(hittingStats);
         const antiRuns = antiRunsFielder(fieldingStats, player.position);

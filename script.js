@@ -19,7 +19,7 @@ async function fetchTeamRoster(teamId) {
         position: player.position.abbreviation
     }));
 }
-async function fetchPlayerStats(playerId) {
+async function fetchPlayerStats(playerId, year) {
     const url = `https://statsapi.mlb.com/api/v1/people/${playerId}?hydrate=stats(group=[hitting,fielding],type=season,season=${year})`;
     const res = await fetch(url);
     const data = await res.json();
@@ -61,7 +61,7 @@ async function rankPlayers() {
         const div = document.createElement("div");
         div.className = "player";
         div.innerHTML = `<strong>#${i + 1} ${p.name}</strong><br>
-      Runs: ${p.runs.toFixed(2)} | Anti-Runs: ${p.antiRuns.toFixed(2)} | Total: ${p.total.toFixed(2)}`;
+        Runs: ${p.runs.toFixed(2)} | Anti-Runs: ${p.antiRuns.toFixed(2)} | Total: ${p.total.toFixed(2)}`;
         results.appendChild(div);
     });
 }

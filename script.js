@@ -21,15 +21,16 @@ async function fetchTeamRoster(teamId) {
         id: player.person.id,
         name: player.person.fullName,
         position: player.position.abbreviation,
-        stats: player.stats,
+        // runs: runs,
+        // runs: player.stats,
+        // antiRuns: antiRuns,
+        // stats: player.stats,
         // Add any other properties you need
         // console.log(player.person.id),
         // console.log(player.person.fullName),
         // console.log(player.position.abbreviation)
     }));
-    console.log(player.person.id),
-    console.log(player.person.fullName),
-    console.log(player.position.abbreviation)
+   
 }
 
 
@@ -44,11 +45,7 @@ async function fetchPlayerStats(playerId, year) {
     const fieldingStats = stats.find(s => s.group.displayName === "fielding")?.splits[0]?.stat || {};
 
     return { hittingStats, fieldingStats };
-    console.log(playerId);
-    console.log(year);
-    console.log(hittingStats);
-    console.log(fieldingStats);
-    console.log(stats);
+    
 
 }
 
@@ -81,7 +78,7 @@ async function rankPlayers() {
         console.log(total);
         console.log(player.position);
         console.log(player.id);
-        console.log(player.stats);
+        // console.log(player.stats);
         console.log(player);
         console.log(player.hittingStats);
         console.log(player.fieldingStats);

@@ -62,3 +62,22 @@ In summary, this antiRunsPitcher function attempts to quantify a pitcher's abili
 - Dominance/Ability to Get Outs: Giving a positive, albeit smaller, weight to strikeouts.
 This formula reflects a modern approach to evaluating pitching, looking beyond just ERA in isolation and incorporating factors like baserunner control and strikeout ability. The weights assigned to WHIP and K/9 (10 and 0.5 respectively) highlight the relative importance you've placed on these aspects of pitching in preventing runs. The use of leagueERA provides a crucial context for evaluating a pitcher's performance relative to the overall league environment.
 
+estimate a player's offensive value in terms of "runs" contributed, using a combination of traditional statistics and weighted advanced metrics.
+Here are the formulas within the function:
+1. Input Statistics (with Defaults):
+- Runs Batted In (RBI): Taken directly from stats.rbi, defaults to 0 if not provided.
+- On-Base Percentage (OBP): Taken directly from stats.obp, defaults to 0 if not provided.
+- Stolen Bases (SB): Taken directly from stats.stolenBases, defaults to 0 if not provided.
+- Extra-Base Hits (XBH): Calculated as the sum of doubles, triples, and home runs from the stats object, defaulting to 0 for each if not provided.
+	- XBH=(stats.doubles∣∣0)+(stats.triples∣∣0)+(stats.homeRuns∣∣0)
+2. Weighted Calculation:
+The function then calculates the "runs value" by taking the RBI and adding weighted values of OBP, stolen bases, and extra-base hits:
+Runs_Value=RBI+(OBP×OBP_WEIGHT)+(SB×SB_WEIGHT)+(XBH×XBH_WEIGHT)
+Substituting the weight values:
+Runs_Value=RBI+(OBP×10)+(SB×2)+(XBH×3)
+In summary, this runsValue function estimates a player's offensive contribution by considering:
+- Direct Run Production: RBI is a direct measure of runs driven in.
+- Ability to Get On Base: OBP is weighted heavily, reflecting the importance of reaching base and starting scoring opportunities.
+- Base Running Value: Stolen bases are given a positive weight, acknowledging their contribution to run scoring potential.
+- Power Hitting: Extra-base hits (doubles, triples, home runs) are weighted to account for their increased likelihood of leading to runs.
+This formula reflects a "Moneyball" philosophy by valuing on-base percentage significantly, alongside other run-producing actions. The weights assigned to OBP, SB, and XBH (10, 2, and 3 respectively) indicate the relative importance you've assigned to these factors in contributing to runs within your model. These weights are crucial parameters that would likely be determined through statistical analysis and optimization to best predict actual run production.

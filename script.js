@@ -80,7 +80,7 @@ async function rankPlayers() {
         console.log(player.id);
         // console.log(player.stats);
         console.log(player);
-        console.log(year);
+        console.log(selectedYear);
         console.log(teamId);
         // console.log(player.hittingStats);
         // console.log(player.fieldingStats);
@@ -100,6 +100,9 @@ async function rankPlayers() {
 }
 console.log("Hello World");
 // const playerId = 123456; // Replace with the actual player ID
+document.getElementById('clear-btn').onclick = function () {
+    document.getElementById('results').innerHTML = "";
+};
 
 
 // console.log(player)

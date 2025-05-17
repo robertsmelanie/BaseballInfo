@@ -80,10 +80,11 @@ async function rankPlayers() {
         console.log(player.id);
         // console.log(player.stats);
         console.log(player);
-        console.log(player.hittingStats);
-        console.log(player.fieldingStats);
-        console.log(player.stats);
-        console.log(player.stats);
+        console.log(year);
+        console.log(teamId);
+        // console.log(player.hittingStats);
+        // console.log(player.fieldingStats);
+       
     }
 
     ranked.sort((a, b) => b.total - a.total);

@@ -13,6 +13,21 @@ console.log(Date.now());
 console.log(new Date().getFullYear());
 console.log(new Date().toLocaleDateString());
 
+const MLB_TEAM_IDS = [
+    108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119,
+    120, 121, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142,
+    143, 144, 145, 146, 147, 158 // All 30 teams
+];
+
+async function getAllPlayersAtPosition(position, year) {
+    let allPlayers = [];
+    for (const teamId of MLB_TEAM_IDS) {
+        const roster = await fetchTeamRoster(teamId);
+        const playersAtPosition = roster.filter(p => p.position === position);
+        allPlayers = allPlayers.concat(playersAtPosition);
+    }
+    return allPlayers;
+}
 
 async function fetchTeamRoster(teamId) {
     const res = await fetch(`https://statsapi.mlb.com/api/v1/teams/${teamId}/roster`);
@@ -56,9 +71,18 @@ async function rankPlayers() {
     const results = document.getElementById("results");
     results.innerHTML = "Loading...";
     const teamId = document.getElementById("teamId").value;
-    const teamRoster = await fetchTeamRoster(teamId);
 
-    const players = teamRoster.filter(p => p.position === selectedPosition);
+    let players;
+    if (teamId === "all") {
+        players = await getAllPlayersAtPosition(selectedPosition, selectedYear);
+    } else {
+        const teamRoster = await fetchTeamRoster(teamId);
+        players = teamRoster.filter(p => p.position === selectedPosition);
+    }
+
+    // const teamRoster = await fetchTeamRoster(teamId);
+
+    // const players = teamRoster.filter(p => p.position === selectedPosition);
 
     const ranked = [];
   

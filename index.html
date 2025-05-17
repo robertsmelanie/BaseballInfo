@@ -12,6 +12,7 @@
         <h1>Player Value Ranker</h1>
         <label for="teamId">Select Team:</label>
         <select id="teamId">
+            <option value="all">All Teams</option>
             <option value="108">Los Angeles Angels</option>
             <option value="109">Arizona Diamondbacks</option>
             <option value="110">Baltimore Orioles</option>
@@ -96,7 +97,7 @@
         </select>
         <button onclick="rankPlayers()">Rank Players</button>
         <button id="clear-btn">Clear Results</button>
-        
+
         <div id="results"></div>
     </div>
 
